@@ -15,7 +15,7 @@ createDslContainers podName: dslPodName,
   node(dslPodName){
       stage("pre-flight"){
           deleteDir()
-          git branch: 'master', url: 'https://github.com/lioramilbaum/ember-csi'
+          git branch: 'contra-hdsl', url: 'https://github.com/lioramilbaum/ember-csi'
       }
 
       stage("Parse Configuration"){
