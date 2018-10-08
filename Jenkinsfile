@@ -12,15 +12,16 @@ createDslContainers podName: dslPodName,
                     openshiftServiceAccount: openshiftServiceAccount,
 // Pass the remainder of your jenkinsfile as a closure to the createDslContainers method
 {
-  node(dslPodName){
-
-      node {
-          docker.image('node:ubuntu:18.04').inside {
-              stage('Test') {
-                  sh 'ls'
-              }
+  node {
+      docker.image('node:ubuntu:18.04').inside {
+          stage('Test') {
+              sh 'ls'
           }
       }
+  }
+
+  node(dslPodName){
+
       // stage("pre-flight"){
       //     deleteDir()
       //     git branch: 'contra-hdsl', url: 'https://github.com/lioramilbaum/ember-csi'
