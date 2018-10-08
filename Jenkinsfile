@@ -2,7 +2,7 @@
 // for the DSL pod template.
 dslPodName = "contraDsl-${UUID.randomUUID()}"
 dockerRepoURL = '172.30.1.1:5000'
-openshiftNamespace = 'foo'
+openshiftNamespace = 'ember-csi'
 openshiftServiceAccount = 'jenkins'
 
 // Create the DSL podTemplate
