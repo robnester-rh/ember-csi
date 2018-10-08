@@ -14,10 +14,13 @@ createDslContainers podName: dslPodName,
 {
   node(dslPodName){
 
-      agent {
-        docker { image 'node:ubuntu:18.04' }
+      node {
+          docker.image('node:ubuntu:18.04').inside {
+              stage('Test') {
+                  sh 'ls'
+              }
+          }
       }
-
       // stage("pre-flight"){
       //     deleteDir()
       //     git branch: 'contra-hdsl', url: 'https://github.com/lioramilbaum/ember-csi'
