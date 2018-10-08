@@ -13,31 +13,36 @@ createDslContainers podName: dslPodName,
 // Pass the remainder of your jenkinsfile as a closure to the createDslContainers method
 {
   node(dslPodName){
-      stage("pre-flight"){
-          deleteDir()
-          git branch: 'contra-hdsl', url: 'https://github.com/lioramilbaum/ember-csi'
+
+      agent {
+        docker { image 'node:ubuntu:18.04' }
       }
 
-      stage("Parse Configuration"){
-          parseConfig()
-          echo env.configJSON
-      }
-
-      stage("Deploy Infra"){
-          deployInfra verbose: true
-      }
-
-      stage("Configure Infra"){
-          configureInfra verbose: true
-      }
-
-      // stage("Execute Tests"){
-      //     executeTests verbose: true
+      // stage("pre-flight"){
+      //     deleteDir()
+      //     git branch: 'contra-hdsl', url: 'https://github.com/lioramilbaum/ember-csi'
       // }
-
-      stage("Destroy Infra"){
-          destroyInfra verbose: true
-      }
-      archiveArtifacts allowEmptyArchive: true, artifacts: '*, linchpin/*, resources/*, linchpin/resources/*'
+      //
+      // stage("Parse Configuration"){
+      //     parseConfig()
+      //     echo env.configJSON
+      // }
+      //
+      // stage("Deploy Infra"){
+      //     deployInfra verbose: true
+      // }
+      //
+      // stage("Configure Infra"){
+      //     configureInfra verbose: true
+      // }
+      //
+      // // stage("Execute Tests"){
+      // //     executeTests verbose: true
+      // // }
+      //
+      // stage("Destroy Infra"){
+      //     destroyInfra verbose: true
+      // }
+      //archiveArtifacts allowEmptyArchive: true, artifacts: '*, linchpin/*, resources/*, linchpin/resources/*'
   }
 }
