@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
 
+homedir=`dirname "${0}"`
+
 on_destroy() {
   	vagrant destroy --force
+    sudo rm -rf $homedir/.vagrant/machines/default/libvirt
 }
 
 on_exit() {
