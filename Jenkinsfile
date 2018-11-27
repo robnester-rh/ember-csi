@@ -20,7 +20,7 @@ createDslContainers podName: dslPodName,
     }
 
     stage("Deploy Infra"){
-      sh 'testing_env_main.sh up'
+      sh './ci-automation/testing_env_main.sh up'
     }
 
     stage("Execute Tests"){
@@ -32,8 +32,8 @@ createDslContainers podName: dslPodName,
     }
 
     stage("Destroy Infra"){
-      sh 'testing_env_main.sh destroy'
+      sh './ci-automation/testing_env_main.sh destroy'
     }
   }
-  
+
 }
