@@ -9,14 +9,7 @@ prune() {
   docker stop centos-test-env || true && docker rm centos-test-env || true
 }
 
-on_exit() {
-    echo "$?"
-    prune
-    exit
-}
-
 up() {
-    trap 'on_exit' SIGTERM SIGINT SIGHUP EXIT
     oc new-app ./ci-automation
 
   	# docker run -d --privileged -d -e 'container=docker' \
