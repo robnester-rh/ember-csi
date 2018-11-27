@@ -17,7 +17,7 @@ on_exit() {
 
 up() {
     trap 'on_exit' SIGTERM SIGINT SIGHUP EXIT
-    oc new-app https://github.com/lioramilbaum/ember-csi.git --context-dir=ci-automation
+    oc new-app ./ci-automation
 
   	# docker run -d --privileged -d -e 'container=docker' \
   	# 	-v $(pwd)/../:/root/ember-csi \
