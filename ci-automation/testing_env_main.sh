@@ -16,15 +16,8 @@ on_exit() {
 }
 
 build_images() {
-  (
-    cd /var/tmp
-    # cloning private account repo till PR is approved and merged
-    #git clone https://github.com/CentOS/CentOS-Dockerfiles.git
-    git clone https://github.com/lioramilbaum/CentOS-Dockerfiles.git
-    cd CentOS-Dockerfiles/libvirtd/centos7
-    docker build -t centos/libvirtd .
-  )
-  docker build -t centos-test-env .
+  oc create -f ci-automation/config/s2i/libvirtd/libvirtd-buildconfig-template.yaml -n ember-csi
+  oc create -f ci-automation/config/s2i/ember-csi/ember-csi-buildconfig-template.yaml -n ember-csi
 }
 
 up() {
