@@ -21,8 +21,14 @@ createDslContainers podName: dslPodName,
     }
 
     stage('Clone repository') {
-      git(url: 'https://github.com/lioramilbaum/CentOS-Dockerfiles.git', \
-        branch: 'master')
+      def exists = fileExists 'tempdir'
+      if (!exists){
+        new File('tempdir').mkdir()
+      }
+      dir ('tempdir') {
+        git(url: 'https://github.com/lioramilbaum/CentOS-Dockerfiles.git', \
+          branch: 'master')
+      }
     }
 
     // stage('Build image') {
