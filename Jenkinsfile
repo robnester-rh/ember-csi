@@ -31,7 +31,8 @@ createDslContainers podName: dslPodName,
     }
 
     stage('Build image') {
-        app = docker.build("centos/libvirtd" "-f tmpdir/libvirtd/centos7/Dockerfile .")
+        app = docker.build("centos/libvirtd",
+          "-f tmpdir/libvirtd/centos7/Dockerfile .")
     }
 
     stage("Deploy Infra"){
