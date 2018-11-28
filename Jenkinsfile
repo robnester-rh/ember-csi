@@ -21,14 +21,13 @@ createDslContainers podName: dslPodName,
     }
 
     stage('Clone repository') {
-      def exists = fileExists 'tempdir'
-      if (!exists){
-        new File('tempdir').mkdir()
-      }
-      dir ('tempdir') {
-        git(url: 'https://github.com/lioramilbaum/CentOS-Dockerfiles.git', \
-          branch: 'master')
-      }
+      checkout([$class: 'GitSCM',
+        branches: [[name: '*/master']],
+        userRemoteConfigs:
+          [[url: 'https://github.com/lioramilbaum/CentOS-Dockerfiles.git>']],
+        extensions: [[$class: 'RelativeTargetDirectory',
+          relativeTargetDir: 'tp-fdm-monitor-bcl']]
+        ])
     }
 
     // stage('Build image') {
