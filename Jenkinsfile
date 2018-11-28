@@ -11,7 +11,8 @@ createDslContainers podName: dslPodName,
   node(dslPodName){
     stage("pre-flight"){
       deleteDir()
-      git branch: "${BRANCH_NAME}", url: 'https://github.com/lioramilbaum/ember-csi.git'
+      git branch: "${BRANCH_NAME}", \
+        url: 'https://github.com/lioramilbaum/ember-csi.git'
     }
 
     stage("Parse Configuration"){
@@ -19,9 +20,17 @@ createDslContainers podName: dslPodName,
       echo env.configJSON
     }
 
-    stage("Deploy Infra"){
-      sh './ci-automation/testing_env_main.sh up'
+    stage('Clone repository') {
+      git(url: 'https://github.com/lioramilbaum/CentOS-Dockerfiles.git', \
+        branch: 'master')
     }
+
+    // stage('Build image') {
+    //     app = docker.build("centos/libvirtd")
+    // }
+    // stage("Deploy Infra"){
+    //   sh './ci-automation/testing_env_main.sh up'
+    // }
 
     stage("Execute Tests"){
       try {

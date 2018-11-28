@@ -2,7 +2,3 @@
 tests:
   playbooks:
     - location: ci-automation/playbooks/tests/flake8.yml
-# results:
-#   outputTypes:
-#     artifacts:
-#       - '/workDir/junit.xml'
