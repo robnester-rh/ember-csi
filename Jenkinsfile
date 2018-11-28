@@ -24,7 +24,7 @@ createDslContainers podName: dslPodName,
       checkout([$class: 'GitSCM',
         branches: [[name: '*/master']],
         userRemoteConfigs:
-          [[url: 'https://github.com/lioramilbaum/CentOS-Dockerfiles.git>']],
+          [[url: 'https://github.com/lioramilbaum/CentOS-Dockerfiles.git']],
         extensions: [[$class: 'RelativeTargetDirectory',
           relativeTargetDir: 'tp-fdm-monitor-bcl']]
         ])
