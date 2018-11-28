@@ -26,16 +26,17 @@ createDslContainers podName: dslPodName,
         userRemoteConfigs:
           [[url: 'https://github.com/lioramilbaum/CentOS-Dockerfiles.git']],
         extensions: [[$class: 'RelativeTargetDirectory',
-          relativeTargetDir: 'tp-fdm-monitor-bcl']]
+          relativeTargetDir: 'tmpdir']]
         ])
     }
 
-    // stage('Build image') {
-    //     app = docker.build("centos/libvirtd")
-    // }
-    // stage("Deploy Infra"){
-    //   sh './ci-automation/testing_env_main.sh up'
-    // }
+    stage('Build image') {
+        app = docker.build("centos/libvirtd" "-f tmpdir/libvirtd/centos7/Dockerfile .")
+    }
+
+    stage("Deploy Infra"){
+      sh './ci-automation/testing_env_main.sh up'
+    }
 
     stage("Execute Tests"){
       try {
