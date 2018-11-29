@@ -1,0 +1,22 @@
+kind: "BuildConfig"
+apiVersion: "v1"
+metadata:
+  name: "centos/libvirtd"
+spec:
+  triggers:
+  source:
+    type: "Git"
+    git:
+      uri: "https://github.com/lioramilbaum/CentOS-Dockerfiles.git"
+      ref: master
+    contextDir: "libvirtd/centos7"
+  strategy:
+    type: "Source"
+    sourceStrategy:
+      from:
+        kind: "ImageStreamTag"
+        name: "centos/systemd:latest"
+  output:
+    to:
+      kind: "ImageStreamTag"
+      name: "centos/libvirtd:latest"
