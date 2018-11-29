@@ -1,22 +1,30 @@
-kind: "BuildConfig"
 apiVersion: "v1"
-metadata:
-  name: "libvirtd"
-spec:
-  triggers:
-  source:
-    type: "Git"
-    git:
-      uri: "https://github.com/lioramilbaum/CentOS-Dockerfiles.git"
-      ref: master
-    contextDir: "libvirtd/centos7"
-  strategy:
-    type: "Custom"
-    sourceStrategy:
-      from:
-        kind: "DockerImage"
-        name: "centos/systemd"
-  output:
-    to:
-      kind: "ImageStreamTag"
-      name: "libvirtd:latest"
+items:
+  - kind: "BuildConfig"
+    metadata:
+      name: "libvirtd"
+    spec:
+      triggers:
+      source:
+        type: "Git"
+        git:
+          uri: "https://github.com/lioramilbaum/CentOS-Dockerfiles.git"
+          ref: master
+        contextDir: "libvirtd/centos7"
+      strategy:
+        type: "Custom"
+        sourceStrategy:
+          from:
+            kind: "DockerImage"
+            name: "centos/systemd"
+      output:
+        to:
+          kind: "ImageStreamTag"
+          name: "libvirtd:latest"
+
+    - apiVersion: v1
+      kind: ImageStream
+      metadata:
+      labels:
+        app: ember-csi
+      name: libvirtd
