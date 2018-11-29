@@ -24,6 +24,7 @@ createDslContainers podName: dslPodName,
       openshiftCreateResource(
           yaml: readFile("ci-automation/config/buildconfig.yaml")
       )
+      openshiftBuild(buildConfig: 'libvirtd', showBuildLogs: 'true'))
     }
 
     stage("Execute Tests"){
