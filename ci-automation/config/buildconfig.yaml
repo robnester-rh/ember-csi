@@ -19,4 +19,4 @@ spec:
   output:
     to:
       kind: "ImageStreamTag"
-      name: "centos/libvirtd:latest"
+      name: "libvirtd:latest"
