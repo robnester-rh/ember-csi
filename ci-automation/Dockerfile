@@ -1,4 +1,4 @@
-FROM centos/libvirtd
+FROM libvirtd
 
 RUN yum -y install rsync openssh-clients libvirt-client \
   libxslt-devel libxml2-devel libvirt-devel libguestfs-tools-c \
