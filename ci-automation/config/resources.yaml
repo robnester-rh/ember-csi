@@ -14,7 +14,7 @@ items:
         contextDir: "libvirtd/centos7"
       strategy:
         type: "Docker"
-        sourceStrategy:
+        DockerStrategy:
           from:
             kind: "DockerImage"
             name: "centos/systemd"
@@ -27,5 +27,3 @@ items:
     kind: ImageStream
     metadata:
       name: libvirtd
-    spec:
-      dockerImageRepository: "docker.io/centos/systemd"
