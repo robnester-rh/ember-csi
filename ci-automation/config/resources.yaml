@@ -13,11 +13,11 @@ items:
           ref: master
         contextDir: "libvirtd/centos7"
       strategy:
-        type: "Docker"
-        DockerStrategy:
+        type: Docker
+        dockerStrategy:
           from:
-            kind: "DockerImage"
-            name: "centos/systemd"
+            kind: DockerImage
+            name: centos/systemd
       output:
         to:
           kind: "ImageStreamTag"
@@ -27,3 +27,37 @@ items:
     kind: ImageStream
     metadata:
       name: libvirtd
+
+  - apiVersion: "v1"
+    kind: "BuildConfig"
+    metadata:
+      name: "ember-csi"
+    spec:
+      triggers:
+      source:
+        type: Dockerfile
+        dockerfile: |-
+        FROM libvirtd:latest
+
+        RUN yum -y install rsync openssh-clients libvirt-client \
+        libxslt-devel libxml2-devel libvirt-devel libguestfs-tools-c \
+        ruby-devel gcc \
+        && yum -y install \
+        https://releases.hashicorp.com/vagrant/2.2.1/vagrant_2.2.1_x86_64.rpm \
+        && vagrant box add centos/7 --provider libvirt \
+        && vagrant plugin install vagrant-libvirt
+      strategy:
+        type: Docker
+        dockerStrategy:
+          from:
+            kind: ImageStreamTag
+            name: libvirtd/latest
+      output:
+        to:
+          kind: "ImageStreamTag"
+          name: "ember-csi:latest"
+
+  - apiVersion: "v1"
+    kind: ImageStream
+    metadata:
+      name: ember-csi

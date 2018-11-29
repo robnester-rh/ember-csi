@@ -10,10 +10,6 @@ prune() {
 }
 
 up() {
-    s2i build https://github.com/lioramilbaum/CentOS-Dockerfiles.git \
-      CentOS-Dockerfiles/libvirtd/centos7 centos/libvirtd
-    oc new-app ./ci-automation
-
   	# docker run -d --privileged -d -e 'container=docker' \
   	# 	-v $(pwd)/../:/root/ember-csi \
   	# 	--name centos-test-env centos-test-env
