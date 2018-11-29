@@ -27,3 +27,8 @@ items:
     kind: ImageStream
     metadata:
       name: libvirtd
+      tags:
+        - from:
+            kind: DockerImage
+            name: 'docker.io/centos/systemd:latest'
+          name: latest
