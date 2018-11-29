@@ -26,28 +26,3 @@ items:
     kind: ImageStream
     metadata:
       name: libvirtd
-
-  - apiVersion: "v1"
-    kind: "BuildConfig"
-    metadata:
-      name: "ember-csi"
-    spec:
-      type: "Git"
-      git:
-        uri: "https://github.com/lioramilbaum/docker_images.git"
-        ref: master
-      strategy:
-        type: Docker
-        dockerStrategy:
-          from:
-            kind: ImageStreamTag
-            name: libvirtd/latest
-      output:
-        to:
-          kind: "ImageStreamTag"
-          name: "ember-csi:latest"
-
-  - apiVersion: "v1"
-    kind: ImageStream
-    metadata:
-      name: ember-csi
