@@ -9,6 +9,7 @@ createDslContainers podName: dslPodName,
                     openshiftServiceAccount: openshiftServiceAccount,
 {
   node(dslPodName){
+
     stage("pre-flight"){
       deleteDir()
       git branch: "${BRANCH_NAME}", \
@@ -43,6 +44,6 @@ createDslContainers podName: dslPodName,
     stage("Destroy Infra"){
       sh './ci-automation/testing_env_main.sh destroy'
     }
-  }
 
+  }
 }
