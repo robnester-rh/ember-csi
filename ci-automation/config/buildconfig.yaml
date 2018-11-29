@@ -11,11 +11,11 @@ spec:
       ref: master
     contextDir: "libvirtd/centos7"
   strategy:
-    type: "Source"
+    type: "Custom"
     sourceStrategy:
       from:
-        kind: "ImageStreamTag"
-        name: "centos/systemd:latest"
+        kind: "DockerImage"
+        name: "centos/systemd"
   output:
     to:
       kind: "ImageStreamTag"
