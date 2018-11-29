@@ -26,5 +26,6 @@ items:
   - apiVersion: "v1"
     kind: ImageStream
     metadata:
+      name: libvirtd
     spec:
       dockerImageRepository: "docker.io/centos/systemd"
