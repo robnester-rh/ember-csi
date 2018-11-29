@@ -23,9 +23,9 @@ items:
           kind: "ImageStreamTag"
           name: "libvirtd:latest"
 
-    - apiVersion: "v1"
-      kind: ImageStream
-      metadata:
-      labels:
-        app: ember-csi
-      name: libvirtd
+  - apiVersion: "v1"
+    kind: ImageStream
+    metadata:
+    labels:
+      app: ember-csi
+    name: libvirtd
