@@ -20,23 +20,10 @@ createDslContainers podName: dslPodName,
       echo env.configJSON
     }
 
-    stage('Clone repository') {
-      checkout([$class: 'GitSCM',
-        branches: [[name: '*/master']],
-        userRemoteConfigs:
-          [[url: 'https://github.com/lioramilbaum/CentOS-Dockerfiles.git']],
-        extensions: [[$class: 'RelativeTargetDirectory',
-          relativeTargetDir: 'tmpdir']]
-        ])
-    }
-
-    stage('Build image') {
-        app = docker.build("centos/libvirtd",
-          "-f tmpdir/libvirtd/centos7/Dockerfile .")
-    }
-
     stage("Deploy Infra"){
-      sh './ci-automation/testing_env_main.sh up'
+      openshiftCreateResource(
+          yaml: readFile("ci-automation/config/ember-csi.yaml")
+      )
     }
 
     stage("Execute Tests"){
