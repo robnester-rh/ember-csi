@@ -41,9 +41,9 @@ createDslContainers podName: dslPodName,
       }
     }
 
-    stage("Destroy Infra"){
-      sh './ci-automation/testing_env_main.sh destroy'
-    }
+    // stage("Destroy Infra"){
+    //   sh './ci-automation/testing_env_main.sh destroy'
+    // }
 
   }
 }
