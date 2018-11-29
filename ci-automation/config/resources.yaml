@@ -5,7 +5,6 @@ items:
     metadata:
       name: "libvirtd"
     spec:
-      triggers:
       source:
         type: "Git"
         git:
@@ -33,9 +32,10 @@ items:
     metadata:
       name: "ember-csi"
     spec:
-      triggers:
-      source:
-        contextDir: ci-automation
+      type: "Git"
+      git:
+        uri: "https://github.com/lioramilbaum/docker_images.git"
+        ref: master
       strategy:
         type: Docker
         dockerStrategy:
