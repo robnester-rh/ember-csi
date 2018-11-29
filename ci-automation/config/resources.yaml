@@ -13,7 +13,7 @@ items:
           ref: master
         contextDir: "libvirtd/centos7"
       strategy:
-        type: "Custom"
+        type: "Docker"
         sourceStrategy:
           from:
             kind: "DockerImage"
