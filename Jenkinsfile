@@ -15,7 +15,7 @@ createDslContainers podName: dslPodName,
       git branch: "${BRANCH_NAME}", \
         url: 'https://github.com/lioramilbaum/ember-csi.git'
 
-      ignore(FAILURE){
+      try {
         openshiftDeleteResourceByJsonYaml(
             yaml: readFile("ci-automation/config/ember-csi-app.yaml")
         )
