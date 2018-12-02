@@ -15,15 +15,17 @@ createDslContainers podName: dslPodName,
       git branch: "${BRANCH_NAME}", \
         url: 'https://github.com/lioramilbaum/ember-csi.git'
 
-      openshiftDeleteResourceByJsonYaml(
-          yaml: readFile("ci-automation/config/ember-csi-app.yaml")
-      )
-      openshiftDeleteResourceByJsonYaml(
-          yaml: readFile("ci-automation/config/ember-csi-image.yaml")
-      )
-      openshiftDeleteResourceByJsonYaml(
-          yaml: readFile("ci-automation/config/libvirtd-image.yaml")
-      )
+      ignore(FAILURE){
+        openshiftDeleteResourceByJsonYaml(
+            yaml: readFile("ci-automation/config/ember-csi-app.yaml")
+        )
+        openshiftDeleteResourceByJsonYaml(
+            yaml: readFile("ci-automation/config/ember-csi-image.yaml")
+        )
+        openshiftDeleteResourceByJsonYaml(
+            yaml: readFile("ci-automation/config/libvirtd-image.yaml")
+        )
+      }
     }
 
     stage("Parse Configuration"){
