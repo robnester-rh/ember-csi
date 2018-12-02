@@ -66,9 +66,12 @@ createDslContainers podName: dslPodName,
       )
       openshiftBuild(buildConfig: 'ember-csi', showBuildLogs: 'true')
 
+      script {
+        env.FILENAME = readFile("ci-automation/config/ember-csi-dc.yaml").replaceAll(/$WORKSPACE/,"${WORKSPACE}")
+        echo ${env.FILENAME}
+      }
       openshiftCreateResource(
-          yaml: readFile("ci-automation/config/ember-csi-dc.yaml").
-            replaceAll(/$WORKSPACE/,"${WORKSPACE}")
+          yaml: "${env.FILENAME}"
       )
     }
 
