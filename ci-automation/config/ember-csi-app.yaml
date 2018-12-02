@@ -16,8 +16,8 @@ spec:
             name: jenkins-workspace
       volumes:
         - hostPath:
-            name: jenkins-workspace
-            path: /workDir
+          name: jenkins-workspace
+          path: /workDir
   replicas: 1
   strategy:
     type: "Rolling"
