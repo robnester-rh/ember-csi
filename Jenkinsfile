@@ -17,7 +17,7 @@ createDslContainers podName: dslPodName,
 
       try {
         openshiftDeleteResourceByJsonYaml(
-            yaml: readFile("ci-automation/config/ember-csi-app.yaml")
+            yaml: readFile("ci-automation/config/ember-csi-dc.yaml")
         )
       }
       catch (err){
@@ -67,7 +67,7 @@ createDslContainers podName: dslPodName,
       openshiftBuild(buildConfig: 'ember-csi', showBuildLogs: 'true')
 
       openshiftCreateResource(
-          yaml: readFile("ci-automation/config/ember-csi-app.yaml")
+          yaml: readFile("ci-automation/config/ember-csi-dc.yaml")
       )
     }
 
