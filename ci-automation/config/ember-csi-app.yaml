@@ -3,13 +3,14 @@ kind: "DeploymentConfig"
 metadata:
   name: "ember-csi"
 spec:
+  template:
+    metadata:
+      labels:
+        name: "ember-csi"
+    spec:
+      containers:
+        - name: "ember-csi"
+          image: "ember-csi"
   replicas: 1
-  triggers:
-    type: ImageChange
-    imageChangeParams:
-      automatic: true
-      containerNames:
-        - ember-csi
-      from:
-        kind: ImageStreamTag
-        name: ember-csi
+  strategy:
+    type: "Rolling"
