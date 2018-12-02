@@ -23,14 +23,18 @@ createDslContainers podName: dslPodName,
 
     stage("Deploy Infra"){
       openshiftCreateResource(
-          yaml: readFile("ci-automation/config/libvirtd.yaml")
+          yaml: readFile("ci-automation/config/libvirtd-image.yaml")
       )
       openshiftBuild(buildConfig: 'libvirtd', showBuildLogs: 'true')
 
       openshiftCreateResource(
-          yaml: readFile("ci-automation/config/ember-csi.yaml")
+          yaml: readFile("ci-automation/config/ember-csi-image.yaml")
       )
       openshiftBuild(buildConfig: 'ember-csi', showBuildLogs: 'true')
+
+      openshiftCreateResource(
+          yaml: readFile("ci-automation/config/ember-csi-app.yaml")
+      )
     }
 
     stage("Execute Tests"){
