@@ -4,7 +4,6 @@ homedir=`dirname "${0}"`
 command=$1
 
 prune() {
-  rm -rf /var/tmp/CentOS-Dockerfiles
   sudo rm -rf $homedir/.vagrant/machines/default/libvirt
   docker stop centos-test-env || true && docker rm centos-test-env || true
 }
