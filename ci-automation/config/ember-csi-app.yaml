@@ -9,8 +9,8 @@ spec:
         name: "ember-csi"
     spec:
       containers:
-        - name: "ember-csi"
-          image: "ember-csi"
+        - name: ember-csi
+          image: 172.30.254.79:5000/ember-csi/ember-csi
   replicas: 1
   strategy:
     type: "Rolling"
