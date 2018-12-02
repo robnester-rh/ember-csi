@@ -14,3 +14,6 @@ spec:
   replicas: 1
   strategy:
     type: "Rolling"
+  volumes:
+    - hostPath:
+        path: /workDir
