@@ -26,6 +26,9 @@ createDslContainers podName: dslPodName,
             yaml: readFile("ci-automation/config/libvirtd-image.yaml")
         )
       }
+      catch (err){
+        echo "Deleting OCP Resources failure"
+      }
     }
 
     stage("Parse Configuration"){
