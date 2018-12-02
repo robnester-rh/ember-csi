@@ -19,9 +19,19 @@ createDslContainers podName: dslPodName,
         openshiftDeleteResourceByJsonYaml(
             yaml: readFile("ci-automation/config/ember-csi-app.yaml")
         )
+      }
+      catch (err){
+        echo "Deleting OCP Resources failure"
+      }
+      try {
         openshiftDeleteResourceByJsonYaml(
             yaml: readFile("ci-automation/config/ember-csi-image.yaml")
         )
+      }
+      catch (err){
+        echo "Deleting OCP Resources failure"
+      }
+      try {
         openshiftDeleteResourceByJsonYaml(
             yaml: readFile("ci-automation/config/libvirtd-image.yaml")
         )
