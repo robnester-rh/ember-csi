@@ -11,9 +11,13 @@ spec:
       containers:
         - name: ember-csi
           image: 172.30.254.79:5000/ember-csi/ember-csi
+          volumeMounts:
+          - mountPath: /workDir
+            name: jenkins-workspace
+      volumes:
+        - hostPath:
+            name: jenkins-workspace
+            path: /workDir
   replicas: 1
   strategy:
     type: "Rolling"
-  volumes:
-    - hostPath:
-        path: /workDir
