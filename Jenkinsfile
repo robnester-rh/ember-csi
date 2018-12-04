@@ -13,10 +13,12 @@ createDslContainers podName: dslPodName,
       deleteDir()
       git branch: "${BRANCH_NAME}", url: 'https://github.com/lioramilbaum/ember-csi.git'
     }
+    
     stage("Parse Configuration"){
       parseConfig()
       echo env.configJSON
     }
+
     stage("Execute Tests"){
       try {
         executeTests verbose: true, vars: [ workspace: "${WORKSPACE}" ]
