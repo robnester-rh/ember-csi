@@ -10,7 +10,6 @@
       requirements: "{{ playbook_dir }}/requirements.txt"
       virtualenv: "{{ workspace }}/venv"
 
-
   - name: flake8
     shell:
       cmd: |

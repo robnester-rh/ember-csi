@@ -22,8 +22,9 @@ createDslContainers podName: dslPodName,
 
     stage("Execute Tests"){
       try {
-        executeTests verbose: true, vars: [ workspace: "${WORKSPACE}" ],
-          ansibleContainerName: ansible-executor
+        executeTests verbose: true,
+                     vars: [ workspace: "${WORKSPACE}" ],
+                     ansibleContainerName: "ansible-executor"
       } finally {
         junit 'junit.xml'
       }
