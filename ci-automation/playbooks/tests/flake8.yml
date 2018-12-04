@@ -17,4 +17,3 @@
         flake8 ember_csi tests --format junit-xml --output-file="{{ workspace }}"/junit.xml
     args:
       chdir: "{{ workspace }}"
-    ignore_errors: yes
