@@ -57,7 +57,7 @@ createDslContainers podName: dslPodName,
     stage("Deploy Infra"){
 
       withPod containers: [
-        [containerName: 'ember-csi', image: 'ember-csi:latest']
+        [containerName: 'ember-csi', image: '172.30.254.79:5000/ember-csi/ember-csi:latest']
       ],
       {
           node(env.userPodName){
