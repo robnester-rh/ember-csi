@@ -56,8 +56,18 @@ createDslContainers podName: dslPodName,
 
     stage("Deploy Infra"){
 
+      openshiftCreateResource(
+          yaml: readFile("ci-automation/config/libvirtd-image.yaml")
+      )
+      openshiftBuild(buildConfig: 'libvirtd', showBuildLogs: 'true')
+
+      openshiftCreateResource(
+          yaml: readFile("ci-automation/config/ember-csi-image.yaml")
+      )
+      openshiftBuild(buildConfig: 'ember-csi', showBuildLogs: 'true')
+
       withPod containers: [
-        [containerName: 'ember-csi', image: '172.30.254.79:5000/ember-csi/ember-csi:latest']
+        [containerName: 'ember-csi', image: 'ember-csi/ember-csi:latest']
       ],
       {
           node(env.userPodName){
@@ -66,15 +76,7 @@ createDslContainers podName: dslPodName,
               }
           }
       }
-      // openshiftCreateResource(
-      //     yaml: readFile("ci-automation/config/libvirtd-image.yaml")
-      // )
-      // openshiftBuild(buildConfig: 'libvirtd', showBuildLogs: 'true')
-      //
-      // openshiftCreateResource(
-      //     yaml: readFile("ci-automation/config/ember-csi-image.yaml")
-      // )
-      // openshiftBuild(buildConfig: 'ember-csi', showBuildLogs: 'true')
+
       //
       // FILENAME = readFile("ci-automation/config/ember-csi-dc.yaml").
       //   replaceAll("WORKSPACE","${WORKSPACE}")
