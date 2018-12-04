@@ -11,9 +11,9 @@
       virtualenv: "{{ workspace }}/venv"
 
   - name: flake8
-      shell: |
-        source venv/bin/activate
-        pip freeze
-        flake8 --help
-      args:
-        chdir: "{{ workspace }}"
+    shell: |
+      source venv/bin/activate
+      pip freeze
+      flake8 --help
+    args:
+      chdir: "{{ workspace }}"
