@@ -11,6 +11,6 @@
       virtualenv: "{{ workspace }}/venv"
 
   - name: flake8
-    shell: source venv/bin/activate && flake8 -vv ember_csi tests --format junit-xml --output-file=junit.xml        
+    shell: source venv/bin/activate && flake8 -vvv ember_csi tests --format junit-xml --output-file=junit.xml        
     args:
       chdir: "{{ workspace }}"
