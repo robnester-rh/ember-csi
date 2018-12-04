@@ -56,26 +56,26 @@ createDslContainers podName: dslPodName,
 
     stage("Deploy Infra"){
 
-      openshiftCreateResource(
-          yaml: readFile("ci-automation/config/libvirtd-image.yaml")
-      )
-      openshiftBuild(buildConfig: 'libvirtd', showBuildLogs: 'true')
-
-      openshiftCreateResource(
-          yaml: readFile("ci-automation/config/ember-csi-image.yaml")
-      )
-      openshiftBuild(buildConfig: 'ember-csi', showBuildLogs: 'true')
-
-      withPod containers: [
-        [containerName: 'ember-csi', image: 'ember-csi/ember-csi:latest']
-      ],
-      {
-          node(env.userPodName){
-              stage('Stage One'){
-                echo "ls /workDir"
-              }
-          }
-      }
+      // openshiftCreateResource(
+      //     yaml: readFile("ci-automation/config/libvirtd-image.yaml")
+      // )
+      // openshiftBuild(buildConfig: 'libvirtd', showBuildLogs: 'true')
+      //
+      // openshiftCreateResource(
+      //     yaml: readFile("ci-automation/config/ember-csi-image.yaml")
+      // )
+      // openshiftBuild(buildConfig: 'ember-csi', showBuildLogs: 'true')
+      //
+      // withPod containers: [
+      //   [containerName: 'ember-csi', image: 'ember-csi/ember-csi:latest']
+      // ],
+      // {
+      //     node(env.userPodName){
+      //         stage('Stage One'){
+      //           echo "ls /workDir"
+      //         }
+      //     }
+      // }
 
 
       //
@@ -86,13 +86,13 @@ createDslContainers podName: dslPodName,
       // )
     }
 
-    // stage("Execute Tests"){
-    //   try {
-    //     executeTests verbose: true, vars: [ workspace: "${WORKSPACE}" ]
-    //   } finally {
-    //     junit 'junit.xml'
-    //   }
-    // }
+    stage("Execute Tests"){
+      try {
+        executeTests verbose: true, vars: [ workspace: "${WORKSPACE}" ]
+      } finally {
+        junit 'junit.xml'
+      }
+    }
 
     // stage("Destroy Infra"){
     //   sh './ci-automation/testing_env_main.sh destroy'
