@@ -15,38 +15,38 @@ createDslContainers podName: dslPodName,
       git branch: "${BRANCH_NAME}", \
         url: 'https://github.com/lioramilbaum/ember-csi.git'
 
-      try {
-        openshiftDeleteResourceByJsonYaml(
-            yaml: readFile("ci-automation/config/ember-csi-dc.yaml")
-        )
-      }
-      catch (err){
-        echo "Deleting OCP Resources failure"
-      }
-      try {
-        openshiftDeleteResourceByJsonYaml(
-            yaml: readFile("ci-automation/config/ember-csi-builds.yaml")
-        )
-      }
-      catch (err){
-        echo "Deleting OCP Resources failure"
-      }
-      try {
-        openshiftDeleteResourceByJsonYaml(
-            yaml: readFile("ci-automation/config/ember-csi-image.yaml")
-        )
-      }
-      catch (err){
-        echo "Deleting OCP Resources failure"
-      }
-      try {
-        openshiftDeleteResourceByJsonYaml(
-            yaml: readFile("ci-automation/config/libvirtd-image.yaml")
-        )
-      }
-      catch (err){
-        echo "Deleting OCP Resources failure"
-      }
+      // try {
+      //   openshiftDeleteResourceByJsonYaml(
+      //       yaml: readFile("ci-automation/config/ember-csi-dc.yaml")
+      //   )
+      // }
+      // catch (err){
+      //   echo "Deleting OCP Resources failure"
+      // }
+      // try {
+      //   openshiftDeleteResourceByJsonYaml(
+      //       yaml: readFile("ci-automation/config/ember-csi-builds.yaml")
+      //   )
+      // }
+      // catch (err){
+      //   echo "Deleting OCP Resources failure"
+      // }
+      // try {
+      //   openshiftDeleteResourceByJsonYaml(
+      //       yaml: readFile("ci-automation/config/ember-csi-image.yaml")
+      //   )
+      // }
+      // catch (err){
+      //   echo "Deleting OCP Resources failure"
+      // }
+      // try {
+      //   openshiftDeleteResourceByJsonYaml(
+      //       yaml: readFile("ci-automation/config/libvirtd-image.yaml")
+      //   )
+      // }
+      // catch (err){
+      //   echo "Deleting OCP Resources failure"
+      // }
     }
 
     stage("Parse Configuration"){
